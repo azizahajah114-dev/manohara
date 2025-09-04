@@ -153,4 +153,31 @@
     }
   });
 </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Peringatan',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
+
 </body>

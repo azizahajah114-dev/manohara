@@ -32,10 +32,10 @@
             {{-- sewa --}}
                 <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
                 hover:bg-[#A7C1A8] text-white" onclick="dropdown(this)" data-submenu="submenu" data-arrow="arrow">
-                    <i class="bi bi-bag"></i>
+                    <i class="bi bi-basket2"></i>
                     <div class="flex justify-between w-full items-center">
                         <span class="text-[15px] ml-4 text-gray-200">Sewa</span>
-                        <span class="text-sm rotate-180" id="arrow">
+                        <span class="text-sm {{request()->is('sewa*') ? 'rotate-0' : 'rotate-180'}}" id="arrow">
                             <i class="bi bi-chevron-down"></i>
                         </span>
                     </div>
@@ -43,16 +43,22 @@
             
             <a href="">
                 <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto tetx-gray-200 hidden" id="submenu">
-                    <a href="{{route('sewa.index')}}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">Data Sewa</h1></a>
-                    <a href="{{route('sewa.menunggu')}}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">Menunggu Konfirmasi</h1></a>
-                    <a href="{{route('sewa.pengembalian')}}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">Pengembalian Barang</h1></a>
+                    <a href="{{route('sewa.index')}}">
+                        <h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1 {{ request()->is('sewa.index') ? 'text-[#F3C327]' : '' }}">Data Sewa</h1>
+                    </a>
+                    <a href="{{route('sewa.menunggu')}}">
+                        <h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1 {{request()->is('sewa.menunggu') ? 'text-[#F3C327]' : ''}}">Menunggu Konfirmasi</h1>
+                    </a>
+                    <a href="{{route('sewa.pengembalian')}}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">
+                        Pengembalian Barang</h1>
+                    </a>
                 </div>
             </a>
             
             {{-- produk --}}
             <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
             hover:bg-[#A7C1A8] text-white" onclick="dropdown(this)" data-submenu="submenu1" data-arrow="arrow1">
-                <i class="bi bi-bag"></i>
+                <i class="bi bi-shop"></i>
                 <div class="flex justify-between w-full items-center">
                     <span class="text-[15px] ml-4 text-gray-200">Produk</span>
                     <span class="text-sm rotate-180" id="arrow1">
@@ -71,10 +77,10 @@
             <a href="{{route('pengguna.index')}}">
                 <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
                     hover:bg-[#A7C1A8] 
-                    {{ request()->is('pengguna*') ? 'text-[#F3C327]' : 'text-white' }}">
+                    {{ request()->is('pengguna.index') ? 'text-[#F3C327]' : '' }}">
                     <i class="bi bi-people"></i>
                     <span class="text-[15px] ml-4 
-                        {{ request()->is('pengguna*') ? 'text-[#F3C327]' : 'text-gray-200' }}">
+                        ">
                         Data Pengguna
                     </span>
                 </div>

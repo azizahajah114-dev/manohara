@@ -1,5 +1,4 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <body class="font-inter bg-[#D1D8BE]">
   <div class="max-w-6xl mx-auto p-6">
     <h1 class="text-2xl font-bold mb-6 text-center text-[#819A91]">Formulir Pembayaran</h1>
@@ -96,7 +95,12 @@
     </div>
   </div>
 
+{{-- sweet alert untuk valisi data pengguna --}}
 
+
+
+
+{{-- iniuntuk jumlah +&- --}}
 <script>
     let variasi = @json($variasi);
 
@@ -218,5 +222,30 @@
         }
     });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Peringatan',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
 
 </body>

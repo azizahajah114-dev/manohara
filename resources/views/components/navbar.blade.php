@@ -13,10 +13,11 @@
             <!-- tombol dropdown -->
             <button class="flex items-center space-x-1 focus:outline-none " id="dropdownButton">
                 <span class="ml-3 text-xl font-bold text-[#F3C327]"><div>{{ Auth::user()->name }}</div></span>
-                <svg class="w-4 h-4 mt-[2px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {{-- <svg class="w-4 h-4 mt-[2px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                         d="M19 9l-7 7-7-7" />
-                </svg>
+                </svg> --}}
+                <i class="bi bi-caret-down text-[#F3C327]"></i>
             </button>
 
             <!-- Menu dropdown -->

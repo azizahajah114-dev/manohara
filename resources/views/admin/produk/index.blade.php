@@ -1,29 +1,33 @@
 <title>Data Produk</title>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <x-layout>
-    <div class="bg-white rounded-lg shadow p-4 border mt-[50px] w-[140vh] items-center justify-beetwen">
-        <div class="flex justify-end">
+    <h1 class="text-2xl font-bold mb-4 text-[#6D9280]">Kelola <span class="text-[#F3C327]">Produk</span></h1>
+    <hr>
+    <div class="border-solid border-2 border-[#819A91] shadow p-4 mt-8  items-center justify-beetwen">
+        
+        <div class="flex justify-between items-center px-4 py-3 bg-[#F4F0F1] border-b border-[#819A91]">
+            <h2 class="text-sm font-semibold text-[#F3C327]">Daftar Produk</h2>
             <a href="{{route('produk.create')}}" 
-            class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
-            Tambah Produk</a>
+               class="bg-[#6D9280] text-white px-6 py-2 rounded-md hover:bg-[#557866] transition">
+               + Tambah
+            </a>
         </div>
-
-        <h2 class="text-sm font-semibold text-gray-600 mb-4 ">Daftar Produk</h2>
-
-        <div class="overflow-x-auto">
+        
+        <div class="mt-3">
+            <div class="w-full overflow-x-auto rounded-sm shadow-lg">
             <table class="w-full border-collapse text-sm">
                 <thead class="bg-[#E3E9D2] border-b">
                     <tr>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">No</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Produk</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Kategori</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Deskripsi</td>
-                        {{-- <td class="px-3 py-2 text-left font-semibold text-gray-700">Stok</td> --}}
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Harga</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Foto</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Best Seller</td>
-                        {{-- <td class="px-3 py-2 text-left font-semibold text-gray-700">Variasi</td> --}}
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Aksi</td>
+                        <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">No</td>
+                        <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Produk</td>
+                        <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Kategori</td>
+                        <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Deskripsi</td>
+                        {{-- <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Stok</td> --}}
+                        <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Harga</td>
+                        <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Foto</td>
+                        <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Best Seller</td>
+                        {{-- <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Variasi</td> --}}
+                        <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Aksi</td>
                     </tr>
 
                 </thead>
@@ -33,12 +37,12 @@
                     @endphp
                     @foreach($produk as $row)
                         <tr>
-                            <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $no++ }}</td>
-                            <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $row->nama_produk }}</td>
-                            <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $row->id_kategori }}</td>
-                            <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $row->deskripsi }}</td>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $no++ }}</td>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $row->nama_produk }}</td>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $row->id_kategori }}</td>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $row->deskripsi }}</td>
 
-                            <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $row->harga }}</td>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $row->harga }}</td>
                             <td>
                                 @if ($row->foto)
                                     <img src="{{ asset('storage/' . $row->foto) }}" 
@@ -50,7 +54,7 @@
                             </td>
                             <td>{{ $row->best_seller ? 'Ya' : 'Tidak' }}</td>
                             {{-- @foreach ($row->variasi as $variasi)
-                                <td class="px-3 py-2 text-left font-semibold text-gray-800">{{$variasi->warna}}</td>
+                                <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{$variasi->warna}}</td>
                             @endforeach --}}
                             <td>
                                 <a href="{{ route('produk.edit', $row->id) }}" class="text-blue-500"><i class="bi bi-pencil-square"></i> Edit</a> |
@@ -65,6 +69,7 @@
                 </tbody>
 
             </table>
+        </div>
         </div>
     </div>
     @if (session('success'))

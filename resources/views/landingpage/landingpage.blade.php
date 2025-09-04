@@ -132,6 +132,7 @@
                           <span class="absolute top-3 left-3 bg-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
                               Best Seller
                           </span>
+                          
                           <img src="{{asset('storage/'.$p->foto)}}" alt="{{$p->nama_produk}}"
                               class="w-full h-56 object-cover">
                           <div class="p-4">

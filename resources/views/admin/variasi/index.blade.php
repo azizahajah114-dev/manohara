@@ -1,8 +1,8 @@
 <x-layout>
-    <h1>Daftar Variasi</h1>
+    <h1 class="text-2xl font-bold mb-4 text-[#6D9280]">Daftar <span class="text-[#F3C327]">Variasi</span></h1>
     <hr>
 
-    <div class="bg-white rounded-lg shadow p-4 border mt-[50px] w-[140vh] items-center justify-beetwen">
+    <div class="bg-white rounded-lg shadow p-4 border mt-8 items-center justify-beetwen">
         <div class="flex justify-end">
             <a href="{{route('variasi.create')}}" 
             class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">

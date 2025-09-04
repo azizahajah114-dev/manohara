@@ -15,7 +15,7 @@
         @endif
 
         <div class="mt-4">
-            <a href="{{ route('pengguna.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+            <a href="{{ route('pengguna.index') }}" class="bg-[#819A91] text-white px-4 py-2 rounded-[5px]  hover:bg-gray-600">
                 Kembali
             </a>
         </div>
