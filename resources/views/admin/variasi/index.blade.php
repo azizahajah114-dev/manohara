@@ -19,7 +19,7 @@
                         <td class="px-3 py-2 text-left font-semibold text-gray-700">Warna</td>
                         <td class="px-3 py-2 text-left font-semibold text-gray-700">Ukuran</td>
                         <td class="px-3 py-2 text-left font-semibold text-gray-700">Stok</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Aksi</td>
+                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Aksiii</td>
                     </tr>
                 </thead>
                 <tbody class="divide-y">
