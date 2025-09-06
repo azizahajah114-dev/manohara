@@ -97,9 +97,11 @@
 
                     <!-- Foto -->
                     <div class="flex-1">
-                        <img src="{{asset('asset/rental.jpg')}}" 
-                            alt="{{$all->nama_produk}}" 
+                        
+                            <img src="{{asset('asset/rental.jpg')}}" 
+                            alt="about us" 
                             class="w-full max-w-md rounded-[30px] border-4 border-[#819A91] shadow-lg mx-auto">
+                        
                     </div>
                     </div>
                 </section>
@@ -144,36 +146,6 @@
                         @empty
                           
                         @endforelse
-                        
-
-                        {{-- <!-- Produk 2 -->
-                        <div class="relative bg-gray-100 rounded-xl overflow-hidden shadow-md">
-                        <span class="absolute top-3 left-3 bg-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-                            Best Seller
-                        </span>
-                        <img src="../Assets/image/produk unggulan jaket.jpeg" alt="Carrier Bag"
-                            class="w-full h-56 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-semibold text-gray-800">Carrier Bag 60L</h3>
-                            <p class="text-sm text-gray-600">Tas gunung besar untuk perjalanan jauh.</p>
-                            <p class="mt-2 text-[#819A91] font-bold">Rp 180.000</p>
-                        </div>
-                        </div>
-
-                        <!-- Produk 3 -->
-                        <div class="relative bg-gray-100 rounded-xl overflow-hidden shadow-md">
-                        <span class="absolute top-3 left-3 bg-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-                            Best Seller
-                        </span>
-                        <img src="../Assets/image/produk unggulan hydropack.jpeg" alt="Sleeping Bag"
-                            class="w-full h-56 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-semibold text-gray-800">Sleeping Bag</h3>
-                            <p class="text-sm text-gray-600">Ringan, hangat, dan nyaman dipakai.</p>
-                            <p class="mt-2 text-[#819A91] font-bold">Rp 120.000</p>
-                        </div>
-                        </div> --}}
-
                     </div>
                     </div>
                 </section>
@@ -256,6 +228,19 @@
     }
   });
 </script>
-    
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('error'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: "{{ session('error') }}",
+        confirmButtonColor: '#819A91'
+    })
+</script>
+@endif
+
 </body>
 </html>

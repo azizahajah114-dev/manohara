@@ -11,7 +11,12 @@
 
     <!-- Menu Tengah -->
     <div class="nav-links flex gap-6">
-      <a href="{{route('dashboard')}}" class="hover:text-yellow-400">Dashboard</a>
+      <a href="{{route('dashboard')}}" class="hover:text-yellow-400">
+          <span class="text-[15px] ml-4 
+          {{ request()->is('users/dashboard') ? 'text-[#F3C327]' : 'text-gray-200' }}">
+          Dashboard
+          </span>
+      </a>
       <a href="{{route('users.product')}}" class="hover:text-yellow-400">List Of Item</a>
       <a href="{{route('syarat')}}" class="hover:text-yellow-400">Terms & Conditions</a>
       <a href="{{route('contact')}}" class="hover:text-yellow-400">Contact Us</a>

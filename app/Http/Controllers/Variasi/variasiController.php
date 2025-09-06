@@ -50,13 +50,18 @@ class VariasiController extends Controller
     public function update(Request $request, VariasiProduk $variasi)
     {
         $request->validate([
-            'id_produk' => 'required|exists:produk,id',
+            // 'id_produk' => 'required|exists:produk,id',
             'warna'     => 'nullable|string|max:100',
             'ukuran'    => 'nullable|string|max:100',
             'stok'      => 'required|integer|min:0',
         ]);
-
-        $variasi->update($request->all());
+        
+        $variasi->update([
+            'id_produk' => $request->id_produk,
+            'warna'=>   $request->warna,
+            'ukuran' => $request->ukuran,
+            'stok' => $request->stok,
+        ]);
 
         return redirect()->route('variasi.index')->with('success', 'Variasi berhasil diperbarui!');
     }

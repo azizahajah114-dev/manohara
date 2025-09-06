@@ -1,4 +1,3 @@
-
 @vite(['resources/css/app.css', 'resources/js/app.js'])
   <body class="font-inter bg-[#D1D8BE]">
   
@@ -94,5 +93,20 @@
     }
   });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: "{{ session('success') }}",
+        showConfirmButton: false,
+        timer: 2000
+    })
+</script>
+@endif
+
 
 </body>

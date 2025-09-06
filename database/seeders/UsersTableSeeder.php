@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        $faker = Faker::create('id_ID');
 
         //bikin 10 user dumy
         foreach (range(1, 10) as $index) {
@@ -24,10 +24,13 @@ class UsersTableSeeder extends Seeder
                 'email' => $faker->unique()->safeEmail(),
                 'password' => Hash::make('password123'), // default password sama
                 'no_telp' => $faker->phoneNumber(),
-                'up_ktp' => null, // bisa faker->imageUrl() kalau mau dummy gambar
+                'alamat' => $faker->address(),
+                'up_ktp' => $faker->randomElement([
+                    'ktp_file/dumy_ktp.jpg',
+                    'ktp_file/dumy_ktp2.jpg',
+                    'ktp_file/dumy_ktp3.jpg',
+                ]),
                 'role' => 'user',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
         }
 

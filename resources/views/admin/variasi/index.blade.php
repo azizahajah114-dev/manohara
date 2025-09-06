@@ -2,54 +2,105 @@
     <h1 class="text-2xl font-bold mb-4 text-[#6D9280]">Daftar <span class="text-[#F3C327]">Variasi</span></h1>
     <hr>
 
-    <div class="bg-white rounded-lg shadow p-4 border mt-8 items-center justify-beetwen">
-        <div class="flex justify-end">
+    <div class="border-2 border-solid border-[#819A91] rounded-md shadow-md p-4 mt-8 items-center justify-beetwen">
+        <div class="flex justify-between items-center px-4 py-3 bg-[#F4F0F1]">
+            <h2 class="text-sm font-semibold text-[#F3C327]">Daftar Variasi</h2>
             <a href="{{route('variasi.create')}}" 
-            class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
+            class="bg-[#6D9280] text-white px-6 py-2 rounded-lg hover:bg-[#557866] transition">
             Tambah Variasi</a>
         </div>
-        <h2 class="text-sm font-semibold text-gray-600 mb-4 ">Daftar Variasi</h2>
+        
+        <div class="mt-3">
+            <div class="w-full overflow-x-auto rounded-sm shadow-lg">
+                <table class="w-full border-collapse text-sm">
+                    <thead class="bg-[#E3E9D2] border-b">
+                        <tr>
+                            <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">No</td>
+                            <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Nama Produk</td>
+                            <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Warna</td>
+                            <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Ukuran</td>
+                            <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Stok</td>
+                            <td class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Aksiii</td>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        @php $no = 1; @endphp
+                    @forelse($variasi as $row)
+                        <tr class="hover:bg-gray-50">
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $no++ }}</td>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $row->produk->nama_produk }}</td>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $row->warna}}</td>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $row->ukuran }}</td>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">{{ $row->stok }}</td>
 
-        <div class="overflow-x-auto">
-            <table class="w-full border-collapse text-sm">
-                <thead class="bg-[#E3E9D2] border-b">
-                    <tr>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">No</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Nama Produk</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Warna</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Ukuran</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Stok</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-700">Aksiii</td>
-                    </tr>
-                </thead>
-                <tbody class="divide-y">
-                    @php $no = 1; @endphp
-                @forelse($variasi as $row)
-                    <tr class="hover:bg-gray-50">
-                        <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $no++ }}</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $row->produk->nama_produk }}</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $row->warna}}</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $row->ukuran }}</td>
-                        <td class="px-3 py-2 text-left font-semibold text-gray-800">{{ $row->stok }}</td>
-
-                        <td class="px-3 py-2 text-leftfont-semibold text-gray-800">
-                            <a href="{{ route('variasi.edit', $row->id) }}" class="text-blue-500"><i class="bi bi-pencil-square"></i> Edit</a> |
-                            <form action="{{ route('variasi.destroy', $row->id) }}" method="POST" style="display:inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 " onclick="return confirm('Yakin hapus variasi ini?')">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                            <td class="border border-[#F6EFEF] px-3 py-2 text-center font-semibold text-gray-800">
+                                <a href="{{ route('variasi.edit', $row->id) }}" class="text-blue-500"><i class="bi bi-pencil-square"></i> Edit</a> |
+                                <form action="{{ route('variasi.destroy', $row->id) }}" method="POST" style="display:inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 delete-produk-btn">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
 
 
-                @empty
-                    <tr>
-                        <td colspan="3" class="text-center py-4">Tidak ada variasi ditemukan.</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="text-center py-4">Tidak ada variasi ditemukan.</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </x-layout>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses',
+            text: '{{ session('success') }}',
+            timer: 2000,
+            showConfirmButton: false
+            });
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ session('error') }}',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    </script>
+@endif
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.delete-produk-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const form = this.closest('form');
+                    Swal.fire({
+                        title: 'Konfirmasi Hapus',
+                        text: 'Apakah Anda yakin ingin menghapus produk ini?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Hapus',
+                        cancelButtonColor: '#3085d6',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>

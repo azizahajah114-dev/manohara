@@ -24,23 +24,29 @@
     <div class="border-[#819A91] border-2 border-solid p-4 mt-8  rounded-sm shadow-md">
         <div class="bg-[#F4F0F1] border-b border-[#819A91] px-4 py-2">
             <h2 class="text-sm font-semibold text-gray-700">
-                LAPORAN SEWA TANGGAL {{ \Carbon\Carbon::parse(request('tanggal_awal'))->format('d-m-Y') }}
-                SAMPAI {{ \Carbon\Carbon::parse(request('tanggal_akhir'))->format('d-m-Y') }}
+                @if(request('tanggal_awal') && request('tanggal_akhir'))
+                    LAPORAN SEWA TANGGAL 
+                    {{ \Carbon\Carbon::parse(request('tanggal_awal'))->format('d-m-Y') }}
+                    SAMPAI 
+                    {{ \Carbon\Carbon::parse(request('tanggal_akhir'))->format('d-m-Y') }}
+                @else
+                    LAPORAN SEWA
+                @endif
             </h2>
         </div>
         @if (request('tanggal_awal') && request('tanggal_akhir'))
         
         <div class="mt-3">
-            <div class=" w-full overflow-x-auto rounded-sm shadow-lg">
+            <div class="w-full overflow-x-auto rounded-sm shadow-lg">
                 <table class="w-full border-collapse text-sm">
                     <thead class="bg-gray-50 border-b">
                         <tr>
-                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">No</th>
-                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Penyewa</th>
-                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Produk</th>
-                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Variasi</th>
-                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Tanggal Sewa</th>
-                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Total</th>
+                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">No</th>
+                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Penyewa</th>
+                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Produk</th>
+                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Variasi</th>
+                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Tanggal Sewa</th>
+                            <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Total</th>
                         </tr>
                     </thead>
                     <tbody>

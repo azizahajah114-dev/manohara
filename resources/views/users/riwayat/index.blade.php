@@ -1,4 +1,6 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <body class="bg-[#D1D8BE] font-sans">
 <x-header-user></x-header-user>
   <div class="max-w-7xl mx-auto py-10 px-5">
@@ -92,27 +94,35 @@
               @endif
             </td>
 
-            <td class="px-6 py-4 text-center space-x-2">
-              <a href="{{route('riwayat.detail', $row->id)}}" 
-                class="px-4 py-2 text-sm bg-[#819A91] text-white rounded-lg hover:bg-[#6b817a]">
-                Detail
-              </a>
-              @if ($row->status_sewa == 'menunggu')
-                <form action="{{ route('riwayat.cancel', $row->id) }}" method="POST" class="inline">
-                  @csrf
-                  @method('PUT')
-                  <button type="submit" class="px-4 py-2 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600">
-                    Batalkan
-                  </button>
-                </form>
-              @endif
-              
-              @if ($row->status_sewa == 'disewa' && !$row->bukti_pengembalian)
-                <a href="{{ route('riwayat.pengembalian', $row->id) }}" class="px-4 py-2 text-sm bg-[#819A91] text-white rounded-lg hover:bg-[#6b817a]">
-                  Upload Pengembalian
-                </a>
-              @endif
-            </td>
+           <td class="px-6 py-4 text-center">
+  <div class="flex flex-col items-center gap-2 w-40"> {{-- atur lebar fix/relative --}}
+    <a href="{{route('riwayat.detail', $row->id)}}" 
+      class="w-full px-4 py-2 text-sm  text-[#819A91] rounded-lg hover:text-[#778278] text-center">
+      <i class="bi bi-info-circle"></i>
+      Detail
+    </a>
+
+    @if ($row->status_sewa == 'menunggu')
+      <form action="{{ route('riwayat.cancel', $row->id) }}" method="POST" class="w-full">
+        @csrf
+        @method('PUT')
+        <button type="submit" 
+          class=" px-4 py-2 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600">
+          Batalkan
+        </button>
+      </form>
+    @endif
+    
+    @if ($row->status_sewa == 'disewa' && !$row->bukti_pengembalian)
+      <a href="{{ route('riwayat.pengembalian', $row->id) }}" 
+        class="w-full px-4 py-2 text-sm  text-[#819A91] rounded-lg hover:text-[#778278] text-center">
+        Upload Pengembalian
+      </a>
+    @endif
+  </div>
+</td>
+
+
           </tr>
           @endforeach
         </tbody>

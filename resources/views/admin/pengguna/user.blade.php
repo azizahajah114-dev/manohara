@@ -1,5 +1,5 @@
 <x-layout>
-    <h1 class="text-2xl font-bold mb-4 text-[#F3C327]">Data Pengguna</h1>
+    <h1 class="text-2xl font-bold mb-4 text-[#6D9280]">Data <span class="text-[#F3C327]">Pengguna</span></h1>
     <div class="border-[#819A91] border-2 border-solid shadow-md p-4 mt-[50px]">
         <h2 class="text-sm font-semibold text-gray-600 mb-4 ">Daftar Pengguna</h2> 
 
@@ -7,13 +7,13 @@
             <table class="w-full border-collapse text-sm">
                 <thead class="bg-gray-50 border-b">
                     <tr>
-                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">No</th>
-                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Nama</th>
-                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Email</th>
-                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Telp</th>
-                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Alamat</th>
-                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">KTP</th>
-                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-left font-semibold text-gray-700">Aksi</th>
+                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">No</th>
+                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Nama</th>
+                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Email</th>
+                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Telp</th>
+                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Alamat</th>
+                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">KTP</th>
+                        <th class="border border-[#F6EFEF] bg-[#A7C1A8] px-3 py-2 text-center font-semibold text-gray-700">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -3,13 +3,13 @@
 <x-layout>
     <h1 class="text-2xl font-bold mb-4 text-[#6D9280]">Kelola <span class="text-[#F3C327]">Produk</span></h1>
     <hr>
-    <div class="border-solid border-2 border-[#819A91] shadow p-4 mt-8  items-center justify-beetwen">
+    <div class="border-solid border-2 border-[#819A91] shadow-md rounded-md p-4 mt-8  items-center justify-beetwen">
         
-        <div class="flex justify-between items-center px-4 py-3 bg-[#F4F0F1] border-b border-[#819A91]">
+        <div class="flex justify-between items-center px-4 py-3 bg-[#F4F0F1]">
             <h2 class="text-sm font-semibold text-[#F3C327]">Daftar Produk</h2>
             <a href="{{route('produk.create')}}" 
                class="bg-[#6D9280] text-white px-6 py-2 rounded-md hover:bg-[#557866] transition">
-               + Tambah
+               Tambah Produk
             </a>
         </div>
         
@@ -78,7 +78,7 @@
                 icon: 'success',
                 title: 'Sukses',
                 text: '{{ session('success') }}',
-                timer: 3000,
+                timer: 2000,
                 showConfirmButton: false
             });
         </script>
@@ -89,7 +89,7 @@
                 icon: 'error',
                 title: 'Error',
                 text: '{{ session('error') }}',
-                timer: 3000,
+                timer: 2000,
                 showConfirmButton: false
             });
         </script>
