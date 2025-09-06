@@ -14,7 +14,8 @@
 
             <div>
                 <label class="block font-medium text-gray-700">Kategori</label>
-                <select name="id_kategori" required>
+                <select name="id_kategori" required
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#A7C1A8] focus:outline-none">
                     <option value="">-- Pilih Kategori --</option>
                     @foreach($kategori as $row)
                         <option value="{{ $row->id }}">{{ $row->nama_kategori }}</option>

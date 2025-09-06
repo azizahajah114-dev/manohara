@@ -18,13 +18,17 @@
 
     <!-- Section Syarat & Ketentuan -->
     <section id="terms" class="px-6 py-10">
-      <h2 class="text-center text-3xl font-bold mb-8 text-[#819A91]">Syarat & Ketentuan</h2>
+    <h2 class="text-center text-3xl font-bold mb-8">
+    <span class="text-[#819A91]">Syarat</span> 
+    <span class="text-yellow-500">&amp; Ketentuan</span>
+  </h2>
+
 
       <!-- Card 1 -->
       <div class="bg-white shadow-lg rounded-xl p-6 mb-6">
         <h3 class="text-xl font-semibold mb-4 text-[#819A91]">Hal Yang Perlu Diketahui</h3>
         <ul class="list-disc list-inside space-y-2 text-gray-700">
-          <li>Harga tersebut terhitung mulai 2 hari sewa. (contoh: diambil Jum'at kembali Minggu → 2 hari sewa)</li>
+          <li>Harga tersebut terhitung mulai 1 hari sewa. (contoh: diambil Jum'at kembali Minggu → 2 hari sewa)</li>
           <li>Tidak harus per 24 jam, bebas ambil & kembalikan di jam operasional (08.00-21.00).</li>
           <li>Tidak melayani pengambilan dan pengembalian di luar jam operasional.</li>
           <li>Terlambat mengembalikkan dianggap menambah hari sewa.</li>
@@ -37,7 +41,8 @@
       <div class="bg-white shadow-lg rounded-xl p-6">
         <h3 class="text-xl font-semibold mb-4 text-[#819A91]">Apa Saja Yang Dibutuhkan</h3>
         <ul class="list-disc list-inside space-y-2 text-gray-700">
-          <li>Jaminan berupa KTP dan KK asli (bukan fotocopy).</li>
+          <li>Setelah berhasil login, pengguna wajib memasukkan nomor KTP untuk verifikasi data.
+              Data KTP akan divalidasi dengan identitas saat pengambilan alat.</li>
           <li>Tidak menerima kartu pelajar / mahasiswa saja. Jika belum punya KTP, bisa pakai identitas orangtua + kartu pelajar.</li>
           <li>Pengembalian harus dilakukan oleh orang yang sama dengan identitas saat pengambilan.</li>
         </ul>

@@ -27,12 +27,12 @@
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
-                {{-- KTP --}}
+                <!-- KTP
                 <div>
                     <label class="block text-sm font-medium text-gray-600">Upload KTP</label>
                     <input type="file" name="up_ktp" accept="image/*" required
                     class="w-full text-sm text-gray-600">
-                </div>
+                </div> -->
 
                 <!-- Password -->
                 <div class="mt-4">

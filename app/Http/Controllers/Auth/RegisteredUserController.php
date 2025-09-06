@@ -34,17 +34,17 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'no_telp' => ['required', 'string', 'max:15'],
-            'up_ktp' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            // 'up_ktp' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ]);
 
-        $ktpPath = $request->file('up_ktp')->store('ktp_files', 'public');
+        // $ktpPath = $request->file('up_ktp')->store('ktp_files', 'public');
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'no_telp' => $request->no_telp,
-            'up_ktp' => $ktpPath,
+            // 'up_ktp' => $ktpPath,
         ]);
 
         event(new Registered($user));

@@ -18,7 +18,7 @@ class LandingPageController extends Controller
                                 ->take(3)
                                 ->get();
 
-        $allProduk = Produk::take(6)->get();
+        $allProduk = Produk::take(8)->get();
         return view('landingpage.landingpage', ['produk' => $Produk, 'allProduk' => $allProduk]);
     }
 }

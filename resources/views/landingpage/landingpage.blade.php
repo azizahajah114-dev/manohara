@@ -22,13 +22,13 @@
     <div class="content-image flex items-center">
       <img src={{ asset('asset/logo1.png') }}
            class="w-[50px] h-auto mr-2 align-middle">
-      <span class="text-xl font-bold tracking-wide">ManoharaGiri</span>
+      <span class="text-lg font-bold tracking-wide">Manohara<span class="text-[#F3C327]">Giri</span></span>
     </div>
 
     <!-- Login -->
     <div class="relative">
       <a href="{{route ('login')}}" 
-         class="flex items-center gap-2 text-base hover:underline">
+         class="flex items-center gap-2 font-bold hover:underline">
         Login
       </a>
     </div>
@@ -46,9 +46,9 @@
                 MANOHARA GIRI <span class="text-yellow-500"><br>JUST FOR YOU</span>
                 </h1>
                     <p class="mt-4">
-                    is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
+                    Mulai dari tenda, carrier, hingga perlengkapan camping — semua bisa kamu dapatkan dengan mudah di Manohara Giri. Nikmati perjalanan mendaki tanpa ribet, cukup booking alat lewat aplikasi, alat siap dipakai!
                     </p>
-                    <a href="{{route('users.product')}}" class="btn inline-block mt-4 px-5 py-2 bg-yellow-500 text-white rounded hover:bg-[#6d877d]">
+                    <a href="{{route('users.product')}}" class="btn inline-block mt-4 px-5 py-2 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-550">
                     Lihat Produk
                     </a>
                 </div>
@@ -57,21 +57,25 @@
     <div class="max-w-6xl mx-auto px-6 text-center">
         <h2 class="text-3xl font-bold text-[#819A91] mb-8">WHY CHOOSE US?</h2>
         <p class="mb-10">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero, debitis quis. 
-            Accusamus et natus nostrum quasi eligendi, cupiditate architecto? 
-            Consequatur asperiores aspernatur assumenda est incidunt tempora molestiae, vitae nobis ipsum!
+            Di Manohara Giri, setiap pendaki berhak mendapatkan perlengkapan terbaik. Kami hadir dengan alat pendakian berkualitas, terawat, dan harga bersahabat untuk menemani setiap langkahmu menuju puncak.
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @foreach ($allProduk as $all)
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <img src="{{ asset('storage/'.$all->foto) }}" class="rounded-lg mb-4 w-full h-56 object-cover" alt="{{$all->nama_produk}}">
-                <h3 class="font-semibold text-lg text-[#819A91]">{{$all->nama_produk}}</h3>
-                <p class="text-sm text-gray-600 mt-2">{{ $all->deskripsi }}</p>
-                <a href="{{ route('users.detail', $all->id) }}" class="inline-block mt-4 px-6 py-2 bg-white text-[#819A91] font-semibold rounded-full shadow hover:bg-gray-100">Visit</a>
-            </div>
-            @endforeach
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    @foreach ($allProduk as $all)
+    <div class="bg-white rounded-xl shadow-md p-6 ">
+        <img src="{{ asset('storage/'.$all->foto) }}" 
+             class="rounded-md mb-3 w-70 h-40 object-contain mx-auto bg-gray-100" 
+             alt="{{$all->nama_produk}}">
+        <h3 class="font-semibold text-sm text-[#819A91] text-center">{{$all->nama_produk}}</h3>
+        <p class="text-xs text-gray-600 mt-1 text-center">{{ $all->deskripsi }}</p>
+        <a href="{{ route('users.detail', $all->id) }}" 
+           class="inline-block mt-3 px-4 py-1 bg-white text-[#819A91] text-xs font-medium rounded-full shadow hover:bg-gray-100">
+           Visit
+        </a>
+    </div>
+    @endforeach
+</div>
+
     </div>
 </section>
 
@@ -97,9 +101,11 @@
 
                     <!-- Foto -->
                     <div class="flex-1">
+                       
                         <img src="{{asset('asset/rental.jpg')}}" 
-                            alt="{{$all->nama_produk}}" 
+                            alt="{about us}}" 
                             class="w-full max-w-md rounded-[30px] border-4 border-[#819A91] shadow-lg mx-auto">
+                       
                     </div>
                     </div>
                 </section>
@@ -201,40 +207,128 @@
                     Login
                 </a>
                 <a href="{{route ('register')}}" 
-                    class="px-6 py-3 bg-yellow-500 text-[#333] font-semibold rounded-full shadow hover:bg-yellow-600 transition">
+                    class="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-full shadow hover:bg-yellow-600 transition">
                     Register
                 </a>
                 </div>
                     </div>
                 </section>
 
-                        <!-- Section Syarat & Ketentuan -->
-                    <section id="terms" class="px-6 py-10">
-                    <h2 class="text-center text-3xl font-bold mb-8 text-[#819A91]">Syarat & Ketentuan</h2>
+                    <!-- Section Syarat & Ketentuan -->
+<section id="terms" class="px-6 py-10">
+  <h2 class="text-center text-3xl font-bold mb-8">
+    <span class="text-[#819A91]">Syarat</span> 
+    <span class="text-yellow-500">&amp; Ketentuan</span>
+  </h2>
 
-                    <!-- Card 1 -->
-                    <div class="bg-white shadow-lg rounded-xl p-6 mb-6">
-                        <h3 class="text-xl font-semibold mb-4 text-[#819A91]">Hal Yang Perlu Diketahui</h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Harga tersebut terhitung mulai 2 hari sewa. (contoh: diambil Jum'at kembali Minggu → 2 hari sewa)</li>
-                        <li>Tidak harus per 24 jam, bebas ambil & kembalikan di jam operasional (08.00-21.00).</li>
-                        <li>Tidak melayani pengambilan dan pengembalian di luar jam operasional.</li>
-                        <li>Terlambat mengembalikkan dianggap menambah hari sewa.</li>
-                        <li>Alat yang sudah dibawa tetapi tidak terpakai tetap terhitung sewa.</li>
-                        <li>Walaupun tidak dikembalikan sebelum jadwal kembali, uang tidak dapat di refund.</li>
-                        </ul>
-                    </div>
+  <!-- Card -->
+  <div class="bg-white shadow-lg rounded-xl p-6 text-center">
+      <h3 class="text-xl font-semibold mb-4 text-[#819A91]">Apa Saja Yang Dibutuhkan</h3>
+      <ul class="space-y-2 text-gray-700">
+          <li>Setelah berhasil login, pengguna wajib memasukkan nomor KTP untuk verifikasi data.
+            Data KTP akan divalidasi dengan identitas saat pengambilan alat.</li>
+          <li>Tidak menerima kartu pelajar / mahasiswa saja. Jika belum punya KTP, bisa pakai identitas orangtua + kartu pelajar.</li>
+          <li>Pengembalian harus dilakukan oleh orang yang sama dengan identitas saat pengambilan.</li>
+      </ul>
+      <div class="mt-6 flex justify-center">
+        <a href="{{route('syarat')}}" 
+          class="btn px-6 py-2 bg-yellow-500 text-white rounded-full hover:bg-yellow-600">
+          Selengkapnya
+        </a>
+      </div>
+  </div>
+</section>
+            <!-- Section Ulasan -->
+<section id="ulasan" class="px-6 py-16 bg-gray-50">
+  <div class="max-w-6xl mx-auto text-center">
 
-                    <!-- Card 2 -->
-                    <div class="bg-white shadow-lg rounded-xl p-6">
-                        <h3 class="text-xl font-semibold mb-4 text-[#819A91]">Apa Saja Yang Dibutuhkan</h3>
-                        <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Jaminan berupa KTP dan KK asli (bukan fotocopy).</li>
-                        <li>Tidak menerima kartu pelajar / mahasiswa saja. Jika belum punya KTP, bisa pakai identitas orangtua + kartu pelajar.</li>
-                        <li>Pengembalian harus dilakukan oleh orang yang sama dengan identitas saat pengambilan.</li>
-                        </ul>
-                    </div>
-                    </section>
+    <!-- Judul -->
+    <h2 class="text-3xl font-bold text-gray-700 mb-2">
+      Apa Kata <span class="text-yellow-500">Mereka?</span>
+    </h2>
+    <div class="w-24 h-1 bg-yellow-400 mx-auto mb-10"></div>
+
+    <!-- Grid Ulasan -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Card Ulasan 1 -->
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow hover:shadow-md transition">
+        <h3 class="font-semibold text-gray-800 mb-2">
+          Produk Yang Bagus Dan Proses Cepat
+        </h3>
+        <p class="text-sm text-gray-600 mb-4">
+          Produknya aku suka banget, terus produk cepat banget sampainya.
+        </p>
+        <div class="flex items-center justify-between mt-8">
+  <!-- Nama pelanggan -->
+  <p class="font-semibold text-gray-800">Asep Saepul</p>
+  
+  <!-- Rating -->
+  <div class="flex text-yellow-400">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="far fa-star text-gray-400"></i>
+  </div>
+</div>
+</div>
+
+<!-- Card Ulasan 2 -->
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow hover:shadow-md transition">
+        <h3 class="font-semibold text-gray-800 mb-2">
+          Penyewaan Yang Praktis Dan Tidak Ribet
+        </h3>
+        <p class="text-sm text-gray-600 mb-4">
+          Bagus banget barangnya aku suka, sewa-nya juga ga ribet, praktis dan gampang banget.
+        </p>
+       <div class="flex items-center justify-between mt-8">
+  <!-- Nama pelanggan -->
+  <p class="font-semibold text-gray-800">Budi Santoso</p>
+  
+  <!-- Rating -->
+  <div class="flex text-yellow-400">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="far fa-star text-gray-400"></i>
+  </div>
+</div>
+
+      </div>
+
+      <!-- Card Ulasan 3 -->
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow hover:shadow-md transition">
+        <h3 class="font-semibold text-gray-800 mb-2">
+          Pelanggan Tetap
+        </h3>
+        <p class="text-sm text-gray-600 mb-4">
+          The best banget kalo sewa barang di sini, jadi pelanggan rental cuy!
+        </p>
+      <div class="flex items-center justify-between mt-8">
+  <!-- Nama pelanggan -->
+  <p class="font-semibold text-gray-800">Bella Putri</p>
+  
+  <!-- Rating -->
+  <div class="flex text-yellow-400">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="far fa-star text-gray-400"></i>
+  </div>
+</div>
+
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+
+                    
             </content>
          
             <x-footer-user></x-footer-user>

@@ -1,5 +1,4 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <body class="font-inter bg-[#D1D8BE]">
   <div class="max-w-6xl mx-auto p-6">
     <h1 class="text-2xl font-bold mb-6 text-center text-[#819A91]">Formulir Pembayaran</h1>
@@ -23,11 +22,11 @@
                 <label>
                   <input type="radio" name="warna" value="{{ $w }}" class="hidden">
                   <span class="w-8 h-8 inline-block rounded-full border-2 border-gray-300 cursor-pointer 
-                    {{ strtolower($w) == 'hijau' ? 'bg-green-600' : '' }}
-                    {{ strtolower($w) == 'biru' ? 'bg-blue-600' : '' }}
-                    {{ strtolower($w) == 'merah' ? 'bg-red-600' : '' }}
-                    {{ strtolower($w) == 'hitam' ? 'bg-black' : '' }}
-                    {{ strtolower($w) == 'kuning' ? 'bg-yellow-500' : '' }}">
+                    {{ strtolower($w) == 'olive' ? 'bg-[#7A8560]' : 'olive' }}
+                    {{ strtolower($w) == 'putih' ? 'bg-[#E5E6F8]' : 'putih' }}
+                    {{ strtolower($w) == 'old rose' ? 'bg-[#C98B8B]' : 'old rose' }}
+                    {{ strtolower($w) == 'hitam' ? 'bg-black' : 'hitam' }}
+                    {{ strtolower($w) == 'dim gray' ? 'bg-[#605959]]' : 'dim gray' }}">
                   </span>
                 </label>
               @endforeach
@@ -85,6 +84,7 @@
           </div>
 
           <div class="pt-4">
+            <input type="hidden" name="jumlah" id="formJumlahSewa" value="1">
             <button type="submit" class="w-full bg-[#819A91] text-white py-3 rounded-xl font-semibold hover:bg-[#6d877d] transition">
               Konfirmasi Pembayaran
             </button>
@@ -96,7 +96,12 @@
     </div>
   </div>
 
+{{-- sweet alert untuk valisi data pengguna --}}
 
+
+
+
+{{-- iniuntuk jumlah +&- --}}
 <script>
     let variasi = @json($variasi);
 
@@ -218,5 +223,30 @@
         }
     });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Peringatan',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
 
 </body>

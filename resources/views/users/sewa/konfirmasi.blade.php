@@ -12,9 +12,37 @@
           <div>
             <h2 class="text-xl font-semibold text-white">{{ $produk->nama_produk }}</h2>
             <p class="text-gray-100">{{ $produk->deskripsi }}</p>
-            <p class="mt-2 text-lg font-bold text-yellow-200">Rp {{ number_format($produk->harga, 0, ',', '.') }} / hari</p>
+            <p class="mt-2 text-lg font-bold text-yellow-300">Rp {{ number_format($produk->harga, 0, ',', '.') }} / hari</p>
           </div>
         </div>
+
+<!-- Transaksi Section -->
+<div class="mt-6 w-full bg-[#FAF2F2] bg-opacity-[.40] rounded-2xl shadow-md p-4">
+  <h3 class="text-yellow-300 font-bold text-lg mb-4">Transaksi Disini</h3>
+
+  <div class="grid gap-3">
+    <!-- Dana -->
+    <div class="flex items-center gap-4  bg-white rounded-xl p-3 hover:shadow-lg transition">
+      <img src="{{ asset('asset/logo-dana2.png') }}" alt="Logo Dana" class="w-14 h-14 object-contain">
+      <div class="flex flex-col">
+        <span class="text-[#819A91] font-medium">Dana</span>
+        <span class="text-yellow-300 font-bold">0812 3456 7890</span>
+      </div>
+    </div>
+
+    <!-- BCA -->
+    <div class="flex items-center gap-4 border bg-white rounded-xl p-3 hover:shadow-lg transition">
+      <img src="{{ asset('asset/logo-bca2.png') }}" alt="Logo BCA" class="w-14 h-14 object-contain">
+      <div class="flex flex-col">
+        <span class="text-[#819A91] font-medium">BCA</span>
+        <span class="text-yellow-300 font-bold">123 456 7890</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Transaksi Section -->
+
+
       </div>
 
       <!-- Bagian Kanan: Formulir -->
@@ -79,7 +107,8 @@
         </div>
 
         <div class="flex justify-between">
-          <span>Jumlah Barang</span> <span>{{ $data['jumlah'] }}</span>
+          <span class="text-sm  font-medium text-white">Jumlah Barang</span> 
+          <span class="text-gray-100">{{ $data['jumlah'] }}</span>
           <input type="hidden" name="jumlah" value="{{ $data['jumlah'] }}">
         </div>
 
@@ -98,7 +127,7 @@
             </div>
             <div class="flex justify-between font-semibold text-lg border-t border-[#819A91] pt-2">
               <span>Total Harga</span>
-              <span class="text-yellow-200">Rp {{ number_format($data['total_harga'], 0, ',', '.') }}</span>
+              <span class="text-yellow-300">Rp {{ number_format($data['total_harga'], 0, ',', '.') }}</span>
               <input type="hidden" name="total_harga" value="{{ $data['total_harga'] }}">
             </div>
           </div>
