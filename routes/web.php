@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
@@ -49,9 +50,7 @@ Route::get('/', [LandingPageController::class, 'index'])->name('landing');
 
 // ================== ROUTE ADMIN ==================
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard_admin');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //Manajemen Produk dan Variasi
     Route::get('/produk/manajement', [ProdukController::class, 'manajemen'])->name('produk.manajemen');

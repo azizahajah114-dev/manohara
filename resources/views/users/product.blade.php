@@ -52,7 +52,6 @@
   </div>
 </section>
 
-
 <x-footer-user></x-footer-user>
 
 <script>
@@ -69,4 +68,35 @@
     }
   });
 </script>
+<<<<<<< HEAD
 </body>
+=======
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Peringatan',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
+
+</body>
+>>>>>>> 80bded21373acc80a5c6003020388f4b6a1fdb82

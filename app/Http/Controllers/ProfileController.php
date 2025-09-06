@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -16,8 +17,16 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $user = $request->user();
+
+        //arahkan ke admin
+        if($user->role === 'admin') {
+            return view('admin.profile.edit', [
+                'user' => $user,
+            ]);
+        }
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
         ]);
     }
 
@@ -26,13 +35,28 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $validatedData = $request->validated();
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Cek apakah ada file KTP yang diunggah
+        if ($request->hasFile('up_ktp')) {
+            // Hapus KTP lama jika ada
+            if ($user->up_ktp) {
+                Storage::disk('public')->delete($user->up_ktp);
+            }
+
+            // Simpan KTP baru
+            $path = $request->file('up_ktp')->store('ktp_file', 'public');
+            $validatedData['up_ktp'] = $path;
         }
 
-        $request->user()->save();
+        $user->fill($validatedData);
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -47,6 +71,11 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+
+        // Hapus KTP dari storage sebelum user dihapus
+        if ($user->up_ktp) {
+            Storage::disk('public')->delete($user->up_ktp);
+        }
 
         Auth::logout();
 

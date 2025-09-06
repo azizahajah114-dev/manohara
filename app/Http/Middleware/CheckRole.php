@@ -22,7 +22,7 @@ class CheckRole
         }
         
         if (!in_array(Auth::User()->role, $roles)){
-            return abort(403, 'Unauthorized');
+            return redirect('/')->with('error', 'Kamu tidak punya akses ke halaman ini.');
         }
 
         return $next($request);

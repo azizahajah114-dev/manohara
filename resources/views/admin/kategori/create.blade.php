@@ -8,9 +8,10 @@
             class="w-full p-2 border rounded mb-3" required>
 
             <div class="flex justify-end mt-4 gap-4">
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Simpan</button>
-                <a href="{{ route('kategori.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
-                Kembali</a>
+                <a href="{{ route('kategori.index') }}" class="bg-[#819A91] text-white px-6 py-2 rounded-md hover:bg-[#647a72] transition">
+                Batal</a>
+                <button type="submit" class="bg-[#174E4E] text-white px-6 py-2 rounded-md hover:bg-[#134242] transition">
+                    Simpan</button>
             </div>
             
         </form>

@@ -20,13 +20,14 @@
             <div class="flex space-x-3 mt-2">
               @foreach($warna as $w)
                 <label>
-                  <input type="radio" name="warna" value="{{ $w }}" class="hidden">
+                  <input type="radio" name="warna" value="{{ $w }}" class="hidden peer">
                   <span class="w-8 h-8 inline-block rounded-full border-2 border-gray-300 cursor-pointer 
-                    {{ strtolower($w) == 'olive' ? 'bg-[#7A8560]' : 'olive' }}
-                    {{ strtolower($w) == 'putih' ? 'bg-[#E5E6F8]' : 'putih' }}
-                    {{ strtolower($w) == 'old rose' ? 'bg-[#C98B8B]' : 'old rose' }}
-                    {{ strtolower($w) == 'hitam' ? 'bg-black' : 'hitam' }}
-                    {{ strtolower($w) == 'dim gray' ? 'bg-[#605959]]' : 'dim gray' }}">
+                  peer-checked:border-[#819A91] peer-checked:bg-[#e6efeb]
+                    {{ strtolower($w) == 'hijau' ? 'bg-green-600' : '' }}
+                    {{ strtolower($w) == 'biru' ? 'bg-blue-600' : '' }}
+                    {{ strtolower($w) == 'merah' ? 'bg-red-600' : '' }}
+                    {{ strtolower($w) == 'hitam' ? 'bg-black' : '' }}
+                    {{ strtolower($w) == 'kuning' ? 'bg-yellow-500' : '' }}">
                   </span>
                 </label>
               @endforeach
@@ -40,8 +41,9 @@
             <div class="flex space-x-3 mt-2">
               @foreach($ukuran as $u)
                 <label>
-                  <input type="radio" name="ukuran" value="{{ $u }}" class="hidden">
-                  <span class="px-4 py-2 rounded-lg border-2 border-gray-300 bg-white text-gray-800 font-medium cursor-pointer">
+                  <input type="radio" name="ukuran" value="{{ $u }}" class="hidden peer">
+                  <span class="px-4 py-2 rounded-lg border-2 border-gray-300 bg-white text-gray-800 font-medium cursor-pointer
+                  peer-checked:border-[#819A91] peer-checked:bg-[#e6efeb]">
                     {{ $u }}
                   </span>
                 </label>
@@ -83,6 +85,8 @@
             <input type="date" name="tgl_kembali" class="mt-1 block w-full border border-[#819A91] rounded-lg p-2 focus:ring focus:ring-[#6d877d]" required>
           </div>
 
+          <input type="hidden" name="jumlah" id="formJumlahSewa" value="1">
+
           <div class="pt-4">
             <input type="hidden" name="jumlah" id="formJumlahSewa" value="1">
             <button type="submit" class="w-full bg-[#819A91] text-white py-3 rounded-xl font-semibold hover:bg-[#6d877d] transition">
@@ -100,17 +104,21 @@
 
 
 
+<<<<<<< HEAD
 
+=======
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+>>>>>>> 80bded21373acc80a5c6003020388f4b6a1fdb82
 {{-- iniuntuk jumlah +&- --}}
 <script>
     let variasi = @json($variasi);
-
-    console.log("Data Variasi Mentah:", variasi);
+    let hasWarnaOptions = {{ $warna->isNotEmpty() ? 'true' : 'false' }};
+    let hasUkuranOptions = {{ $ukuran->isNotEmpty() ? 'true' : 'false' }};
 
     function updateStok() {
         let warna = document.querySelector('input[name="warna"]:checked')?.value || null;
         let ukuran = document.querySelector('input[name="ukuran"]:checked')?.value || null;
-
+        
         let stokElement = document.getElementById('stok');
         let jumlahSewaContainer = document.getElementById('jumlahSewaContainer');
         let idVariasiInput = document.getElementById('id_variasi');
@@ -120,28 +128,38 @@
         jumlahSewaContainer.style.display = 'none';
         idVariasiInput.value = '';
 
-        console.log('Pilihan Anda:', { warna, ukuran });
+        // Tampilkan pesan jika ada opsi yang belum dipilih
+        if (hasWarnaOptions && !warna) {
+            stokElement.innerText = "Pilih warna terlebih dahulu.";
+            stokElement.style.display = 'block';
+            return;
+        }
 
+        if (hasUkuranOptions && !ukuran) {
+            stokElement.innerText = "Pilih ukuran terlebih dahulu.";
+            stokElement.style.display = 'block';
+            return;
+        }
+        
+        // Cari variasi yang cocok
         let variasiDitemukan = variasi.find(v => {
-            let warnaMatch = (warna === null || v.warna === warna);
-            let ukuranMatch = (ukuran === null || v.ukuran === ukuran);
-
-            if (v.ukuran === '-' && ukuran === null) {
-                ukuranMatch = true;
-            }
-
-            return warnaMatch && ukuranMatch;
+            const isWarnaMatch = !hasWarnaOptions || v.warna === warna;
+            const isUkuranMatch = !hasUkuranOptions || v.ukuran === ukuran;
+            return isWarnaMatch && isUkuranMatch;
         });
 
         if (variasiDitemukan) {
             console.log('Variasi ditemukan:', variasiDitemukan);
             console.log('Stok yang ditemukan:', variasiDitemukan.stok);
-
+            
             stokElement.innerText = "Stok: " + variasiDitemukan.stok;
             stokElement.style.display = 'block';
             
             if (parseInt(variasiDitemukan.stok) > 0) {
                 jumlahSewaContainer.style.display = 'block';
+                jumlahSewaInput.max = variasiDitemukan.stok;
+                idVariasiInput.value = variasiDitemukan.id;
+                jumlahSewaInput.value = 1;
             } else {
                 Swal.fire({
                     icon: 'warning',
@@ -150,10 +168,6 @@
                     confirmButtonColor: '#819A91'
                 });
             }
-
-            idVariasiInput.value = variasiDitemukan.id;
-            jumlahSewaInput.value = 1;
-            jumlahSewaInput.max = variasiDitemukan.stok;
 
         } else {
             console.log('Variasi tidak ditemukan untuk pilihan ini.');
@@ -164,17 +178,21 @@
         document.getElementById('tambah').disabled = (parseInt(jumlahSewaInput.value) >= parseInt(jumlahSewaInput.max));
         document.getElementById('kurang').disabled = (parseInt(jumlahSewaInput.value) <= 1);
     }
-
+    
     document.querySelectorAll('input[name="warna"]').forEach(el => el.addEventListener('change', updateStok));
     document.querySelectorAll('input[name="ukuran"]').forEach(el => el.addEventListener('change', updateStok));
+
+    document.addEventListener('DOMContentLoaded', updateStok);
     
     document.getElementById('tambah').addEventListener('click', function(){
         let jumlahInput = document.getElementById('jumlahSewa');
+        let formJumlahInput = document.getElementById('formJumlahSewa');
         let stokTersedia = parseInt(jumlahInput.max);
         let currentVal = parseInt(jumlahInput.value);
 
         if (currentVal < stokTersedia) {
             jumlahInput.value = currentVal + 1;
+            formJumlahInput.value = currentVal + 1;
         }
         this.disabled = (parseInt(jumlahInput.value) >= stokTersedia);
         document.getElementById('kurang').disabled = false;
@@ -182,13 +200,15 @@
 
     document.getElementById('kurang').addEventListener('click', function(){
         let jumlahInput = document.getElementById('jumlahSewa');
+        let formJumlahInput = document.getElementById('formJumlahSewa');
         let currentVal = parseInt(jumlahInput.value);
 
         if (currentVal > 1) {
             jumlahInput.value = currentVal - 1;
+            formJumlahInput.value = currentVal - 1;
         }
 
-        this.disabled = (parseInt(jumlahInput.value) <= 1);    
+        this.disabled = (parseInt(jumlahInput.value) <= 1);    
         document.getElementById('tambah').disabled = false;
     });
 
@@ -197,20 +217,14 @@
         let jumlahSewa = document.getElementById('jumlahSewa').value;
         let stokTersedia = document.getElementById('jumlahSewa').max;
 
-        console.log('Formulir akan dikirim...');
-        console.log('ID Variasi:', idVariasi);
-        console.log('Jumlah Sewa:', jumlahSewa);
-        console.log('Stok Tersedia:', stokTersedia);
-        
         if (!idVariasi) {
             e.preventDefault();
             Swal.fire({
                 icon: 'warning',
                 title: 'Peringatan',
-                text: 'Silakan pilih variasi produk (warna dan/atau ukuran) terlebih dahulu.',
+                text: 'Silakan pilih variasi produk terlebih dahulu.',
                 confirmButtonColor: '#819A91'
             });
-            console.log('Pengiriman diblokir karena ID variasi kosong.');
         } else if (parseInt(jumlahSewa) > parseInt(stokTersedia)) {
             e.preventDefault();
             Swal.fire({
@@ -219,10 +233,33 @@
                 text: 'Jumlah sewa melebihi stok yang tersedia.',
                 confirmButtonColor: '#819A91'
             });
-            console.log('Pengiriman diblokir karena jumlah sewa melebihi stok.');
         }
     });
 </script>
+ 
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Peringatan',
+            text: "{{ session('error') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: "{{ session('success') }}",
+            confirmButtonColor: '#6D9280'
+        })
+    </script>
+@endif
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

@@ -34,11 +34,11 @@
 
             <div class="flex justify-end gap-4 mt-4">
                 <a href="{{ route('variasi.index') }}"
-                   class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition">
+                   class="bg-[#819A91] text-white px-6 py-2 rounded-md hover:bg-[#647a72] transition">
                     Batal
                 </a>
                 <button type="submit"
-                        class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
+                   class="bg-[#174E4E] text-white px-6 py-2 rounded-md hover:bg-[#134242] transition">
                     Simpan
                 </button>
             </div>

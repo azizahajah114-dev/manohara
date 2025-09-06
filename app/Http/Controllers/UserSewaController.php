@@ -9,6 +9,7 @@ use App\Models\VariasiProduk;
 use App\Models\Sewa;
 use App\Models\DetailSewa;
 use App\Models\Pengembalian;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,14 @@ class UserSewaController extends Controller
     //form sewa
     public function create($id)
     {
+        //Ambil dta user 
+        $user = Auth::User();
+
+        //validasi ktp
+        if ($user->up_ktp === null) {
+            return redirect()->route('users.product')->with('error', 'Anda belum mengupload KTP, silakan upload KTP terlebih dahulu sebelum melakukan sewa.');
+        }
+
         // Ambil produk berdasarkan id
         $produk = Produk::with('variasi')->findOrFail($id);
 
@@ -47,7 +56,7 @@ class UserSewaController extends Controller
         $jumlahSewa = $request->jumlah;
 
         //cek stok tersedia sblm konfirmasi
-        if($variasi->stok < $jumlahSewa){
+        if ($variasi->stok < $jumlahSewa) {
             return redirect()->back()->withErrors(['id_variasi' => 'Stok untuk variasi yang dipilih tidak tersedia. Silakan pilih variasi lain.'])->withInput();
         }
 
@@ -62,8 +71,6 @@ class UserSewaController extends Controller
 
         // Total harga (barang + ongkir)
         $total = $biayaBarang + $ongkir;
-
-       
 
         //data 
         $data = [
@@ -82,7 +89,7 @@ class UserSewaController extends Controller
     }
 
     // Simpan ke database setelah konfirmasi
-        public function store(Request $request, $id)
+    public function store(Request $request, $id)
     {
         $request->validate([
             'id_variasi' => 'required|exists:variasi_produk,id',
@@ -97,7 +104,7 @@ class UserSewaController extends Controller
         $jumlahSewa = $request->jumlah;
 
         //cek stok
-        if($variasi->stok < $jumlahSewa){
+        if ($variasi->stok < $jumlahSewa) {
             return redirect()->back()->withErrors(['jumlah' => 'Jumlah sewa melebihi stok yang tersedia.'])->withInput();
         }
 

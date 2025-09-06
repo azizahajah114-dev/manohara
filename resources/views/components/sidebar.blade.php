@@ -1,6 +1,6 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-<div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[250px] overflow-y-auto text-center bg-[#6D9280]">
+<div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[250px] overflow-y-auto text-center bg-[#819A91]">
         <div class="text-gray-100 text-xl ">
             <div>
                 <div class="p-5 mt-1  flex items-center text-center">
@@ -19,7 +19,7 @@
             {{-- dashboard --}}
             <a href="/admin/dashboard">
                 <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
-                     hover:bg-[#A7C1A8] 
+                     hover:bg-[#AAC5BB] 
                     {{ request()->is('admin/dashboard') ? 'text-[#F3C327]' : 'text-white' }}">
                     <i class="bi bi-house-door"></i>
                     <span class="text-[15px] ml-4 
@@ -31,85 +31,86 @@
 
             {{-- sewa --}}
                 <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
-                hover:bg-[#A7C1A8] text-white" onclick="dropdown(this)" data-submenu="submenu" data-arrow="arrow">
-                    <i class="bi bi-bag"></i>
+                    hover:bg-[#AAC5BB] 
+                    {{ request()->routeIs('sewa.*') ? 'text-[#F3C327]' : '' }}" 
+                    onclick="toggleDropdown(this)">
+                    <i class="bi bi-basket2"></i>
                     <div class="flex justify-between w-full items-center">
-                        <span class="text-[15px] ml-4 text-gray-200">Sewa</span>
-                        <span class="text-sm rotate-180" id="arrow">
+                        <span class="text-[15px] ml-4 {{ request()->routeIs('sewa.*') ? 'text-[#F3C327]' : '' }}">Sewa</span>
+                        <span class="text-sm duration-300 transition {{ request()->routeIs('sewa.*') ? 'rotate-180' : 'rotate-0' }}">
                             <i class="bi bi-chevron-down"></i>
                         </span>
                     </div>
                 </div>
             
-            <a href="">
-                <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto tetx-gray-200 hidden" id="submenu">
-                    <a href="{{route('sewa.index')}}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">Data Sewa</h1></a>
-                    <a href="{{route('sewa.menunggu')}}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">Menunggu Konfirmasi</h1></a>
-                    <a href="{{route('sewa.pengembalian')}}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">Pengembalian Barang</h1></a>
-                </div>
-            </a>
+            <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 {{ request()->routeIs('sewa.*') ? '' : 'hidden' }}">
+                <a href="{{route('sewa.index')}}">
+                    <h1 class="cursor-pointer p-2 hover:bg-[#AAC5BB] rounded-md mt-1 {{ request()->routeIs('sewa.index') ? 'text-[#F3C327] bg-[#AAC5BB]' : '' }}">Data Sewa</h1>
+                </a>
+                <a href="{{route('sewa.menunggu')}}">
+                    <h1 class="cursor-pointer p-2 hover:bg-[#AAC5BB] rounded-md mt-1 {{ request()->routeIs('sewa.menunggu') ? 'text-[#F3C327] bg-[#AAC5BB]' : '' }}">Menunggu Konfirmasi</h1>
+                </a>
+                <a href="{{route('sewa.pengembalian')}}">
+                    <h1 class="cursor-pointer p-2 hover:bg-[#AAC5BB] rounded-md mt-1 {{ request()->routeIs('sewa.pengembalian') ? 'text-[#F3C327] bg-[#AAC5BB]' : '' }}">Pengembalian Barang</h1>
+                </a>
+            </div>
             
             {{-- produk --}}
             <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
-            hover:bg-[#A7C1A8] text-white" onclick="dropdown(this)" data-submenu="submenu1" data-arrow="arrow1">
-                <i class="bi bi-bag"></i>
+                hover:bg-[#AAC5BB] 
+                {{ request()->routeIs('produk.*') ? 'text-[#F3C327]' : 'text-white' }}" 
+                    onclick="toggleDropdown(this)">
+                <i class="bi bi-shop"></i>
                 <div class="flex justify-between w-full items-center">
-                    <span class="text-[15px] ml-4 text-gray-200">Produk</span>
-                    <span class="text-sm rotate-180" id="arrow1">
+                    <span class="text-[15px] ml-4 {{ request()->routeIs('produk.*') ? 'text-[#F3C327]' : '' }}">Produk</span>
+                    <span class="text-sm duration-300 transition {{ request()->routeIs('produk.*') || request()->routeIs('variasi.*') || request()->routeIs('kategori.*') ? 'rotate-0' : '' }}">
                         <i class="bi bi-chevron-down"></i>
                     </span>
                 </div>
             </div>
         
-            <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto tetx-gray-200 hidden" id="submenu1">
-                <a href="{{ route('produk.index')}}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">Data Produk</h1></a>
-                <a href="{{ route('variasi.index') }}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">Variasi Produk</h1></a>
-                <a href="{{ route('kategori.index') }}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1">Kategori Produk</h1></a>
-                <a href="{{route('produk.manajemen')}}"><h1 class="cursor-ponter p-2 hover:bg-[#A7C1A8]">Manajemen Produk</h1></a>
-            </div>
+        <div class="text-left text-sm font-thin mt-2 w-4/5 mx-auto text-gray-200 {{ request()->routeIs('produk.*') || request()->routeIs('variasi.*') || request()->routeIs('kategori.*') ? '' : 'hidden' }}">
+            <a href="{{ route('produk.index')}}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1 {{ request()->routeIs('produk.index') ? 'text-[#F3C327] bg-[#AAC5BB]' : '' }}">Daftar Produk</h1></a>
+            <a href="{{ route('variasi.index') }}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1 {{ request()->routeIs('variasi.index') ? 'text-[#F3C327] bg-[#AAC5BB]' : '' }}">Variasi Produk</h1></a>
+            <a href="{{ route('kategori.index') }}"><h1 class="cursor-pointer p-2 hover:bg-[#A7C1A8] rounded-md mt-1 {{ request()->routeIs('kategori.index') ? 'text-[#F3C327] bg-[#AAC5BB]' : '' }}">Kategori Produk</h1></a>
+        </div>
 
-            <a href="{{route('pengguna.index')}}">
+            <a href="{{ route('pengguna.index') }}">
                 <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
-                    hover:bg-[#A7C1A8] 
-                    {{ request()->is('pengguna*') ? 'text-[#F3C327]' : 'text-white' }}">
+                    hover:bg-[#AAC5BB] 
+                    {{ request()->routeIs('pengguna.index') ? 'text-[#F3C327]' : 'text-white' }}">
                     <i class="bi bi-people"></i>
                     <span class="text-[15px] ml-4 
-                        {{ request()->is('pengguna*') ? 'text-[#F3C327]' : 'text-gray-200' }}">
+                        {{ request()->routeIs('pengguna.index') ? 'text-[#F3C327]' : 'text-gray-200' }}">
                         Data Pengguna
                     </span>
                 </div>
             </a>
 
-            {{-- call us --}}
-            {{-- <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
-            hover:bg-[#A7C1A8] text-white">
-                <i class="bi bi-chat"></i>
-                <span class="text-[15px] ml-4 text-gray-200">Menghubungi</span>
-            </div> --}}
-            {{-- <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
-            hover:bg-[#A7C1A8] text-white">
-                <i class="bi bi-gear"></i>
-                <span class="text-[15px] ml-4 text-gray-200">Kelola Halaman</span>
-            </div> --}}
-
             {{-- laporan sewa --}}
-            <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
-            hover:bg-[#A7C1A8] text-white">
-                <i class="bi bi-file-earmark"></i>
-                <a href="{{route('laporan.index')}}"><span class="text-[15px] ml-4 text-gray-200">Laporan</span></a>
-            </div>
+            <a href="{{ route('laporan.index') }}">
+                <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer 
+                    hover:bg-[#AAC5BB] 
+                    {{ request()->routeIs('laporan.index') ? 'text-[#F3C327]' : 'text-white' }}">
+                    <i class="bi bi-file-earmark"></i>
+                    <span class="text-[15px] ml-4 
+                        {{ request()->routeIs('laporan.index') ? 'text-[#F3C327]' : 'text-gray-200' }}">
+                        Laporan
+                    </span>
+                </div>
+            </a>
             
 
         </div>
     </div>
 
-    <script type="text/javascript">
-        function dropdown(el) {
-            const submenuId = el.getAttribute('data-submenu');
-            const arrowId = el.getAttribute('data-arrow');
-            document.getElementById(submenuId).classList.toggle('hidden');
-            document.getElementById(arrowId).classList.toggle('rotate-0');
-        }
-        dropdown()
+<script type="text/javascript">
+    function toggleDropdown(el) {
+        const submenu = el.nextElementSibling;
+        const arrow = el.querySelector('span:last-child');
         
-    </script>
+        submenu.classList.toggle('hidden');
+        arrow.classList.toggle('rotate-0');
+        arrow.classList.toggle('rotate-180');
+    }
+</script>

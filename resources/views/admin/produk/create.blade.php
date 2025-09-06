@@ -1,6 +1,6 @@
-<x-layout>
+@vite(['resources/css/app.css', 'resources/js/app.js'])
     <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg mx-auto mt-10">
-        <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Tambah Produk</h2>
+        <h2 class="text-2xl font-bold mb-6 text-center text-[#819A91]">Tambah <span class="text-[#174E4E]">Produk</span></h2>
 
         {{-- Arahkan ke route produk.store --}}
         <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
@@ -61,14 +61,14 @@
 
             <div class="flex justify-end gap-4">
                 <a href="{{ route('produk.index') }}"
-                    class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition">
+                    class="bg-[#819A91] text-white px-6 py-2 rounded-md hover:bg-[#647a72] transition">
                     Batal
                 </a>
                 <button type="submit"
-                    class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
+                    class="bg-[#174E4E] text-white px-6 py-2 rounded-md hover:bg-[#134242] transition">
                     Simpan
                 </button>
             </div>
         </form>
     </div>
-</x-layout>
+
